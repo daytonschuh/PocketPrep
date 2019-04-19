@@ -21,7 +21,6 @@ class ShoppingListScreen extends React.Component {
           try {
             //Wait for FileSystem read to return a result string
             result = await FileSystem.readAsStringAsync(this.fileUri);
-            console.log('now');
           
           } catch(e) {
           console.log(e);
@@ -45,22 +44,22 @@ class ShoppingListScreen extends React.Component {
 
     
   
-    // Ingredients holds all ingredients of selected meals
-    this.state={
-      ingredients:[]
-    }
-
-    // If mealNames is empty, it will generate an empty list
-    // Only occurs when accessing through home menu
-    try{
-      this.mealNames=this.props.navigation.state.params.compileNames;
-    }
-    catch(e){
-      console.log('Error Message',e);
-    }
     
 
-    console.log(this.mealNames,this.customMeals);
+        // If mealNames is empty, it will generate an empty list
+        // Only occurs when accessing through home menu
+        try{
+          this.mealNames=this.props.navigation.state.params.compileNames;
+        }
+        catch(e){
+          console.log('Error Message',e);
+        }
+        // Ingredients holds all ingredients of selected meals
+        this.state={
+          ingredients:this.createShoppingList(this.mealNames,recipeDb)
+        }
+
+        console.log(this.mealNames,this.customMeals);
 
   }
 
