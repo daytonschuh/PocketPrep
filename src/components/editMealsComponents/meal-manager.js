@@ -177,7 +177,7 @@ export default class MealManager {
 		return;
 	}
 	
-	async removeMeal(d,t,m) {
+	removeMeal(d,t,m) {
 		
 		if(this.MealPlanCalendar[d] == null || this.MealPlanCalendar[d] == undefined )
 			return false;
@@ -196,9 +196,7 @@ export default class MealManager {
 			this.MealPlanCalendar[d] = mp;
 			
 			//Writes Object/Data_structure to file
-			await FileSystem.writeAsStringAsync(this.fileUri, JSON.stringify(this.MealPlanCalendar));
-			
-			
+			FileSystem.writeAsStringAsync(this.fileUri, JSON.stringify(this.MealPlanCalendar));
 			
 			//Output for debug/testing purposes
 			console.log("removed " + m);
@@ -226,11 +224,11 @@ export default class MealManager {
 		arr = [];
 		
 		//Copy array based on time of meal 't'
-		if (t == 'B' || t == 0)
+		if (t == 'B')
 			arr = mp.Breakfast;
-		else if (t == 'L' || t == 1)
+		else if (t == 'L')
 			arr = mp.Lunch;
-		else if (t == 'D' || t == 2)
+		else if (t == 'D')
 			arr = mp.Dinner;
 		
 		//Search for matching entry
