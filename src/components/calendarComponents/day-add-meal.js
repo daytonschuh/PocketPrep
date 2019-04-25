@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView  } from 'react-native';
-import { Header,ListItem,Divider, ButtonGroup } from 'react-native-elements';
+import { Header,ListItem,Divider, ButtonGroup, Input } from 'react-native-elements';
 import recipeData from '../../data/recipe';
 import MealManager from '../editMealsComponents/meal-manager';
 import { FileSystem } from 'expo';
@@ -78,15 +78,10 @@ class viewDayAddMeal extends React.Component {
 
 	}
 	
-	/* addmealButtonPress(d,t,m) {
-		this.MM.addmeal(d,t,m);
-		this.props.navigation.navigate('DayView', dayChosen );
-	} */
 
-    // essentially copy pasta of preset.js
+    // essentially copy paste of preset.js
     // handle is slightly different
     render() {
-        console.log(this.state.props);
         const buttons = ['Preset', 'Custom'];
         const {selectedIndex} = this.state;
         let currIndex = selectedIndex;
@@ -100,12 +95,18 @@ class viewDayAddMeal extends React.Component {
                 buttons={buttons}
                 containerStyle={{height: '10%'}}
             />
-        
-            <ScrollView style={{height:'85%'}} >
+            <Input  placeholder="Search" 
+                    containerStyle={{padding:'2%'}}
+                    leftIcon={{ type: 'font-awesome', name: 'search' ,color:'#808080' }}
+                    leftIconContainerStyle={{paddingRight:'5%'}}
+                    
+                    />
+
+            <ScrollView style={{height:'80%'}} >
                 {
-                    this.state.displayList.map((l) => (
+                    this.state.displayList.map((l,i) => (
                     <ListItem
-                        key={l.name}
+                        key={`${i}`+l.name}
                         title={l.name}
                         topDivider={true}
                         bottomDivider={true}

@@ -46,20 +46,20 @@ class ShoppingListScreen extends React.Component {
   
     
 
-        // If mealNames is empty, it will generate an empty list
-        // Only occurs when accessing through home menu
-        try{
-          this.mealNames=this.props.navigation.state.params.compileNames;
-        }
-        catch(e){
-          console.log('Error Message',e);
-        }
-        // Ingredients holds all ingredients of selected meals
-        this.state={
-          ingredients:this.createShoppingList(this.mealNames,recipeDb)
-        }
+    // If mealNames is empty, it will generate an empty list
+    // Only occurs when accessing through home menu
+    try{
+      this.mealNames=this.props.navigation.state.params.compileNames;
+    }
+    catch(e){
+      this.mealNames=[];
+    }
+    // Ingredients holds all ingredients of selected meals
+    this.state={
+      ingredients:this.createShoppingList(this.mealNames,recipeDb)
+    }
 
-        console.log(this.mealNames,this.customMeals);
+    console.log(this.mealNames,this.customMeals);
 
   }
 
