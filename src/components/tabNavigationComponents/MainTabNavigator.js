@@ -18,11 +18,11 @@ import { NavigationActions, StackActions } from 'react-navigation';
 
 
 const CalendarStack = createSwitchNavigator({
-  Calendar: CalendarScreen,
+  Calendar: CalendarScreen
 });
 
 CalendarStack.navigationOptions = {
- tabBarLabel: 'Calendar',
+  tabBarLabel: 'Calendar',
 
 	tabBarIcon: ({ focused }) => (
     <FontAwesome

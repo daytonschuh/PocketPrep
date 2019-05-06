@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { View } from 'react-native';
-import { Button } from 'react-native-elements'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
 import MealManager from '../fileManager/meal-manager';
 import { StackActions,NavigationActions} from 'react-navigation';
@@ -19,7 +18,7 @@ class CalendarScreen extends React.Component {
   initialState = {
       [_today]: {disabled: false}
   }
-  
+
   constructor(props) {
     super(props);
     this.MealManage = null;
@@ -58,8 +57,7 @@ class CalendarScreen extends React.Component {
     return (
       <View style={{flex: 1}}>
         <CalendarList
-            theme={{dotColor: 'red', monthTextColor: 'orange'
-        }}
+            theme={{monthTextColor: 'blue'}}
             
             pastScrollRange={0}
             futureScrollRange={1}
@@ -75,10 +73,12 @@ class CalendarScreen extends React.Component {
 
             //Would like to get this working with: markingType={'period'}, but currently only implemented for default marking
         />
-        <Button
-          title= 'Compile Shopping List'
+        <TouchableOpacity
+          style={styles.primarybutton}
           onPress ={this.handleSend.bind(this)}
-        />
+        >
+        <Text style = {{color: '#FFFFFF'}}> Compile Shopping List </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -163,8 +163,12 @@ class CalendarScreen extends React.Component {
   }
 }
 
-export default CalendarScreen;
+const styles = StyleSheet.create({
+  primarybutton: {
+    alignItems: 'center',
+    backgroundColor: '#337ab7',
+    padding: 10
+  }
+})
 
-// TODO: Set up an event handle for navigating to date specified page
-// TODO: Set up item container for user entered meals -- requires backend pulling from a list
-// TODO: If there is at least 1 item in the item container for that date, the app marks the day
+export default CalendarScreen;
